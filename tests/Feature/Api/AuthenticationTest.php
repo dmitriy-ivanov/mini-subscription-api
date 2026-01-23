@@ -17,7 +17,6 @@ class AuthenticationTest extends TestCase
 
         // Set API key for testing
         config(['app.api_key' => 'test-api-key']);
-        putenv('API_KEY=test-api-key');
     }
 
     public function test_subscription_endpoints_require_api_key(): void

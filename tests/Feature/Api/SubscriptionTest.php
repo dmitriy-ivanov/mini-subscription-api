@@ -18,7 +18,7 @@ class SubscriptionTest extends TestCase
         parent::setUp();
         
         // Set API key for testing
-        putenv('API_KEY=test-api-key');
+        config(['app.api_key' => 'test-api-key']);
     }
 
     public function test_can_subscribe_customer_to_product(): void

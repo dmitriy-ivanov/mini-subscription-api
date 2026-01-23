@@ -19,7 +19,7 @@ class AuthenticateApiKey
             ?? $request->bearerToken()
             ?? null;
 
-        $validApiKey = env('API_KEY');
+        $validApiKey = config('app.api_key');
 
         if (!$apiKey || $apiKey !== $validApiKey) {
             return response()->json([
