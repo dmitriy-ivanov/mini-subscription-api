@@ -45,8 +45,8 @@ The fastest way to get started is using Docker:
 1. **Clone the repository**:
 
     ```bash
-    git clone <repo-url>
-    cd <repo-folder>
+    git clone https://github.com/dmitriy-ivanov/mini-subscription-api.git
+    cd mini-subscription-api
     ```
 
 2. **Build and start the container**:
@@ -89,8 +89,8 @@ If you prefer to run without Docker:
 1. **Clone the repository**:
 
     ```bash
-    git clone <repo-url>
-    cd <repo-folder>
+    git clone https://github.com/dmitriy-ivanov/mini-subscription-api.git
+    cd mini-subscription-api
     ```
 
 2. **Install dependencies**:
