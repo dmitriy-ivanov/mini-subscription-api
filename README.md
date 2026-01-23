@@ -410,10 +410,10 @@ The test suite includes:
 Key environment variables in `.env`:
 
 ```env
-APP_NAME=Laravel
+APP_NAME=Subscription API
 APP_ENV=local
 APP_DEBUG=true
-APP_URL=http://localhost
+APP_URL=http://localhost:8000
 DB_CONNECTION=sqlite
 API_KEY=changeme123
 ```
