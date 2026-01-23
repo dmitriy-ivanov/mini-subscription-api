@@ -7,7 +7,6 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Subscription;
 use Illuminate\Database\UniqueConstraintViolationException;
-use Illuminate\Support\Facades\DB;
 
 class SubscriptionService
 {
@@ -32,12 +31,6 @@ class SubscriptionService
         if ($existingActive) {
             throw new \Exception('Customer already has an active subscription to this product.');
         }
-
-        // Cancel any existing cancelled subscriptions (cleanup)
-        Subscription::where('customer_id', $customer->id)
-            ->where('product_id', $productId)
-            ->where('status', SubscriptionStatus::CANCELLED)
-            ->delete();
 
         try {
             $subscription = Subscription::create([
