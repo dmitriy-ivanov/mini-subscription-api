@@ -405,19 +405,6 @@ The test suite includes:
 - ✅ Invalid product handling
 - ✅ Missing API key handling
 
-### Example Test Command
-
-```bash
-# Run all tests
-php artisan test
-
-# Run specific test file
-php artisan test tests/Feature/Api/SubscriptionTest.php
-
-# Run with coverage (requires Xdebug)
-php artisan test --coverage
-```
-
 ## Environment Variables
 
 Key environment variables in `.env`:
