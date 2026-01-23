@@ -28,10 +28,6 @@ The API follows RESTful conventions with nested resources, standard HTTP verbs, 
 
 Business logic is separated into service classes to keep controllers thin and improve testability.
 
-### Database Constraints
-
-A unique constraint on `(customer_id, product_id, status)` prevents duplicate active subscriptions at the database level.
-
 ### Extensibility
 
 The system is intentionally minimal to stay within scope, but the structure allows easy extension to billing, renewals, audit logs, and B2B seat-based subscriptions.
@@ -66,7 +62,7 @@ The container will automatically:
 
 The API will be available at `http://localhost:8000`
 
-To stop the container:
+To stop and remove the container:
 
 ```bash
 docker-compose down
@@ -151,10 +147,10 @@ http://localhost:8000/api
 
 For protected endpoints, include the API key using either:
 
-- `X-API-Key` header: `curl -H "X-API-Key: your-api-key" ...`
-- `Authorization: Bearer` header: `curl -H "Authorization: Bearer your-api-key" ...`
+- `X-API-Key` header: `curl -H "X-API-Key: changeme123" ...`
+- `Authorization: Bearer` header: `curl -H "Authorization: Bearer changeme123" ...`
 
-Replace `your-api-key` with the value from your `.env` file's `API_KEY`.
+The default API key is `changeme123` (set in `.env`). Replace it with any random string you like for production use.
 
 ### Endpoints
 
@@ -237,7 +233,7 @@ Subscribe a customer to a product. Requires authentication (see [Authentication]
 
 ```bash
 curl -X POST http://localhost:8000/api/customers/1/subscriptions \
-  -H "X-API-Key: your-api-key" \
+  -H "X-API-Key: changeme123" \
   -H "Content-Type: application/json" \
   -d '{"product_id": 1}'
 ```
@@ -277,14 +273,14 @@ Get subscriptions for a customer. Returns only active subscriptions by default. 
 
 ```bash
 curl http://localhost:8000/api/customers/1/subscriptions \
-  -H "X-API-Key: your-api-key"
+  -H "X-API-Key: changeme123"
 ```
 
 To get all subscriptions (including cancelled), add `?all=true`:
 
 ```bash
 curl "http://localhost:8000/api/customers/1/subscriptions?all=true" \
-  -H "X-API-Key: your-api-key"
+  -H "X-API-Key: changeme123"
 ```
 
 **Response:** `200 OK` (default - active only)
@@ -346,7 +342,7 @@ Cancel a customer's subscription to a product. Requires authentication.
 
 ```bash
 curl -X DELETE http://localhost:8000/api/customers/1/subscriptions/1 \
-  -H "X-API-Key: your-api-key"
+  -H "X-API-Key: changeme123"
 ```
 
 **Response:** `200 OK`
@@ -431,15 +427,9 @@ APP_NAME=Laravel
 APP_ENV=local
 APP_DEBUG=true
 APP_URL=http://localhost
-
 DB_CONNECTION=sqlite
-
 API_KEY=changeme123
 ```
-
-### Required Variables
-
-- `API_KEY`: The API key used for authentication. Replace with any random string you like. Use the same value when calling endpoints with `X-API-Key` or `Bearer` token.
 
 ## Known Limitations / Next Steps
 
