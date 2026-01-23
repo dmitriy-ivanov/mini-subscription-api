@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: subscription-api
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+      - ./storage:/var/www/html/storage
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - DB_CONNECTION=sqlite
+    command: >
+      sh -c "[ ! -f .env ] && cp .env.example .env || true &&
+             php artisan key:generate --force --no-interaction &&
+             php artisan migrate --force --no-interaction &&
+             php artisan db:seed --force --no-interaction &&
+             php artisan serve --host=0.0.0.0 --port=8000"
