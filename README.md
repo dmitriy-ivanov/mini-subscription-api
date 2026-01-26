@@ -386,6 +386,14 @@ Common HTTP status codes:
 
 ### Run Tests
 
+**Using Docker:**
+
+```bash
+docker-compose exec app sh -c "composer install --dev && php artisan test"
+```
+
+**Using Local PHP:**
+
 ```bash
 php artisan test
 ```
